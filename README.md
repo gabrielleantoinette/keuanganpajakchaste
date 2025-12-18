@@ -1,4 +1,4 @@
-# Aplikasi Pengeluaran
+# Aplikasi Keuangan Chaste
 
 Aplikasi web untuk mengelola dan melacak pengeluaran harian menggunakan Laravel, MySQL, dan Tailwind CSS.
 

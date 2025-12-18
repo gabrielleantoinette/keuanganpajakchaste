@@ -4,14 +4,15 @@
 
 @section('content')
 <div class="max-w-2xl mx-auto">
-    <div class="bg-white rounded-lg shadow">
-        <div class="px-6 py-4 border-b border-gray-200">
+    <div class="bg-white rounded-lg shadow-md">
+        <div class="px-6 py-4 border-b border-gray-200 bg-gradient-to-r from-teal-50 to-blue-50">
             <h2 class="text-xl font-semibold text-gray-900">Edit Pengeluaran</h2>
         </div>
 
-        <form action="{{ route('expenses.update', $expense) }}" method="POST" class="px-6 py-6">
+        <form action="{{ route('expenses.update', ['id' => $expense->id, 'type' => $expense->type ?? 'cash']) }}" method="POST" class="px-6 py-6">
             @csrf
             @method('PUT')
+            <input type="hidden" name="type" value="{{ $expense->type ?? 'cash' }}">
 
             <div class="space-y-6">
                 <!-- Description -->
@@ -24,7 +25,7 @@
                            id="description" 
                            value="{{ old('description', $expense->description) }}"
                            required
-                           class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 @error('description') border-red-500 @enderror"
+                           class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500 @error('description') border-red-500 @enderror"
                            placeholder="Contoh: Beli bahan makanan">
                     @error('description')
                         <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
@@ -43,7 +44,7 @@
                            required
                            min="0"
                            step="0.01"
-                           class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 @error('amount') border-red-500 @enderror"
+                           class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500 @error('amount') border-red-500 @enderror"
                            placeholder="0">
                     @error('amount')
                         <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
@@ -58,7 +59,7 @@
                     <select name="category" 
                             id="category" 
                             required
-                            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 @error('category') border-red-500 @enderror">
+                            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500 @error('category') border-red-500 @enderror">
                         <option value="">Pilih Kategori</option>
                         <option value="Makanan & Minuman" {{ old('category', $expense->category) == 'Makanan & Minuman' ? 'selected' : '' }}>Makanan & Minuman</option>
                         <option value="Transportasi" {{ old('category', $expense->category) == 'Transportasi' ? 'selected' : '' }}>Transportasi</option>
@@ -84,7 +85,7 @@
                            id="date" 
                            value="{{ old('date', $expense->date->format('Y-m-d')) }}"
                            required
-                           class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 @error('date') border-red-500 @enderror">
+                           class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500 @error('date') border-red-500 @enderror">
                     @error('date')
                         <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                     @enderror
@@ -98,7 +99,7 @@
                     <textarea name="notes" 
                               id="notes" 
                               rows="4"
-                              class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 @error('notes') border-red-500 @enderror"
+                              class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500 @error('notes') border-red-500 @enderror"
                               placeholder="Catatan tambahan (opsional)">{{ old('notes', $expense->notes) }}</textarea>
                     @error('notes')
                         <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
@@ -113,7 +114,7 @@
                     Batal
                 </a>
                 <button type="submit" 
-                        class="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium">
+                        class="px-6 py-2 bg-teal-600 text-white rounded-lg hover:bg-teal-700 transition-colors font-medium shadow-md">
                     Update Pengeluaran
                 </button>
             </div>
