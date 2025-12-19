@@ -1,0 +1,17 @@
+User-agent: *
+Allow: /
+
+# Sitemap (uncomment dan update jika sudah ada sitemap)
+# Sitemap: https://yourdomain.com/sitemap.xml
+
+# Disallow sensitive paths
+Disallow: /storage/
+Disallow: /vendor/
+Disallow: /.env
+Disallow: /app/
+Disallow: /bootstrap/
+Disallow: /config/
+Disallow: /database/
+Disallow: /resources/
+Disallow: /routes/
+Disallow: /tests/
